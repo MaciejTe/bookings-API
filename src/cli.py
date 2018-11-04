@@ -1,8 +1,12 @@
 """
 This file contains additional commands added to flask CLI.
 """
-from src.database.db_config import DB_ENGINE
-from src.database.models import db
+import os
+
+from src import db
+
+cwd = os.path.dirname(os.path.abspath(__file__))
+DB_ENGINE = db.create_engine('sqlite:////{}/test.db'.format(cwd))
 
 
 def register(app):

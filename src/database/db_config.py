@@ -1,16 +1,8 @@
 """
 This file contains SQLite database configuration.
 """
-import os
-
 from sqlalchemy.engine import Engine
 from sqlalchemy import event
-
-from src.database.models import db
-
-cwd = os.path.dirname(os.path.abspath(__file__))
-DATABASE_URI = 'sqlite:////{}/test.db'.format(cwd)
-DB_ENGINE = db.create_engine('sqlite:////{}/test.db'.format(cwd))
 
 
 @event.listens_for(Engine, "connect")

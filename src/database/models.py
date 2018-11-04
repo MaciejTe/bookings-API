@@ -3,10 +3,7 @@ This file contains database models using SQLAlchemy ORM.
 """
 import datetime
 
-from flask_sqlalchemy import SQLAlchemy
-
-# TODO: try move db object creation to src/__init__.py
-db = SQLAlchemy()
+from src import db
 
 
 class Bookings(db.Model):
