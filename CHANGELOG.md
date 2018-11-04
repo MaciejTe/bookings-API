@@ -23,6 +23,14 @@
 #######################################
 -->
 
+00.00.02 (04/11/2018)
+---------------------
+Improved and simplified some imports
+   - added build_image section to Makefile
+   - moved db object to src/\__init\__.py
+   - added src/logger.py
+   - added config.py with all Flask env vars
+
 00.00.01 (04/11/2018)
 ---------------------
 * Added core functionality based on Flask microframework:
