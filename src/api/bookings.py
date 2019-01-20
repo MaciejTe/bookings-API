@@ -3,14 +3,19 @@ This file contains all API endpoints implementation connected with bookings.
 """
 from flask_restplus import Resource
 
+from src.database.models import Bookings
+from src.api import api
 
-def register_bookings_endpoints(api):
-    @api.route('/bookings')
-    class Bookings(Resource):
-        def get(self):
-            """ Get all resources.
+ns = api.namespace('bookings', description='Bookings endpoint')
 
-            Returns:
-                sample response object
-            """
-            return {'sample': 'booking'}
+
+@ns.route('')
+class Bookings(Resource):
+    """ Bookings endpoint. """
+    def get(self):
+        """ Get all bookings.
+
+        Returns:
+            sample response object
+        """
+        return {'sample': 'booking'}

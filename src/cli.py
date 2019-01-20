@@ -3,13 +3,13 @@ This file contains additional commands added to flask CLI.
 """
 import os
 
-from src import db
+from src.database import db
 
 cwd = os.path.dirname(os.path.abspath(__file__))
 DB_ENGINE = db.create_engine('sqlite:////{}/test.db'.format(cwd))
 
 
-def register(app):
+def register_cli_commands(app):
     """ Register additional command for Flask CLI.
 
     Args:

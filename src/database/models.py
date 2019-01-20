@@ -1,9 +1,9 @@
 """
-This file contains database models using SQLAlchemy ORM.
+This file contains database models declared with SQLAlchemy ORM.
 """
-import datetime
+from datetime import datetime
 
-from src import db
+from src.database import db
 
 
 class Bookings(db.Model):
@@ -12,7 +12,7 @@ class Bookings(db.Model):
     resource_id = db.Column(db.Integer, db.ForeignKey('resources.id'),
                             nullable=False)
     service_id = db.Column(db.Integer, nullable=False)
-    booked_from = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
+    booked_from = db.Column(db.DateTime, nullable=False, default=datetime.now)
     booked_to = db.Column(db.DateTime, nullable=False)
     notes = db.Column(db.String)
 
@@ -25,7 +25,7 @@ class Resources(db.Model):
     """ Create resources database table. """
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, nullable=False)
     active = db.Column(db.Boolean, nullable=False)
 
@@ -36,7 +36,7 @@ class Resources(db.Model):
 class Users(db.Model):
     """ Create users database table. """
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, nullable=False)
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)

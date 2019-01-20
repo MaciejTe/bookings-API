@@ -1,10 +1,34 @@
 """
 This file is configured as FLASK_APP environment variable.
 """
-from src import create_app, cli, create_api
-from src.api import register_endpoints
+import logging
 
-app = create_app()
-cli.register(app)
-api = create_api(app)
-register_endpoints(api)
+from flask import Flask, Blueprint
+from src.api.resources import ns as resources_namespace
+from src.api.bookings import ns as bookings_namespace
+from config import Config
+from src.logger import handler
+from src.api import api
+from src.database import db
+from src.cli import register_cli_commands
+
+
+app = Flask(__name__, template_folder="templates")
+app.logger.addHandler(handler)
+app.logger.setLevel(logging.DEBUG)
+
+
+def initialize_app(flask_app):
+    flask_app.config.from_object(Config)
+    blueprint = Blueprint('swagger_ui', __name__, url_prefix='')
+
+    api.init_app(blueprint)
+    # api.add_namespace(resources_namespace)
+    # api.add_namespace(bookings_namespace)
+    flask_app.register_blueprint(blueprint)
+    register_cli_commands(flask_app)
+    db.init_app(flask_app)
+
+
+initialize_app(app)
+# app.run()

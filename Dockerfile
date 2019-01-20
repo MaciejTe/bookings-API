@@ -4,10 +4,12 @@
 
 FROM python:3.6.3
 
-COPY /bookings_api /bookings_api
+COPY . /bookings_api
+WORKDIR /bookings_api
 
-RUN sudo apt install sqlite
+ENV FLASK_DEBUG 1
+ENV FLASK_APP bookings_api.py
+
 RUN pip install --upgrade pip
+
 RUN python setup.py install
-
-

@@ -23,6 +23,11 @@
 #######################################
 -->
 
+00.00.03 (20/01/2019)
+---------------------
+Removed most of the code from \_\_init__.py's
+   - added simple test example based on pytest and flask-testing
+
 00.00.02 (04/11/2018)
 ---------------------
 Improved and simplified some imports
