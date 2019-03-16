@@ -20,7 +20,7 @@ app.logger.setLevel(logging.DEBUG)
 
 def initialize_app(flask_app):
     flask_app.config.from_object(Config)
-    blueprint = Blueprint('swagger_ui', __name__, url_prefix='')
+    blueprint = Blueprint("swagger_ui", __name__, url_prefix="")
 
     api.init_app(blueprint)
     # api.add_namespace(resources_namespace)

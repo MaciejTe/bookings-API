@@ -23,6 +23,12 @@
 #######################################
 -->
 
+00.00.03 (16/03/2019)
+---------------------
+Implemented CRUD operations for /resources endpoint
+   - used jsonschema to validate JSONs 
+   - added draft version of libs/ package
+
 00.00.03 (20/01/2019)
 ---------------------
 Removed most of the code from \_\_init__.py's
