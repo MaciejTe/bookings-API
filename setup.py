@@ -17,20 +17,23 @@ def get_latest_version():
             latest_version(str): latest version of the application,
                                  or ??.??.?? in case of wrong formatted file.
     """
-    changelog_file_path = 'CHANGELOG.md'
-    with open(changelog_file_path, 'r') as change_file:
+    changelog_file_path = "CHANGELOG.md"
+    with open(changelog_file_path, "r") as change_file:
         changes = change_file.readlines()
 
-    ver_regex = r'(?P<ver>\d{2}.\d{2}.\d{2})\s+\(\d+/\d+/\d+\)\s*\Z'
-    versions = [re.match(ver_regex, line).groupdict()['ver']
-                for line in changes if re.match(ver_regex, line)]
+    ver_regex = r"(?P<ver>\d{2}.\d{2}.\d{2})\s+\(\d+/\d+/\d+\)\s*\Z"
+    versions = [
+        re.match(ver_regex, line).groupdict()["ver"]
+        for line in changes
+        if re.match(ver_regex, line)
+    ]
 
-    versions_splitted = [tuple(ver.split('.')) for ver in versions]
+    versions_splitted = [tuple(ver.split(".")) for ver in versions]
     versions_splitted.sort(key=lambda x: (x[0], x[1], x[2]))
     try:
-        latest_version = '.'.join(versions_splitted.pop())
+        latest_version = ".".join(versions_splitted.pop())
     except IndexError:
-        latest_version = '??.??.??'
+        latest_version = "??.??.??"
 
     return latest_version
 
@@ -41,19 +44,19 @@ def get_requirements():
         Returns:
             modules(list): list of Python modules
     """
-    requirements_file_path = 'requirements.txt'
-    with open(requirements_file_path, 'r') as req_file:
+    requirements_file_path = "requirements.txt"
+    with open(requirements_file_path, "r") as req_file:
         modules = req_file.readlines()
     modules = [module.strip() for module in modules if module.strip()]
     return modules
 
 
 setup(
-    name='Bookings API',
+    name="Bookings API",
     version=get_latest_version(),
-    description='REST API for booking purposes',
-    author='Maciej Tomczuk',
-    author_email='tomczukmaciej@gmail.com',
+    description="REST API for booking purposes",
+    author="Maciej Tomczuk",
+    author_email="tomczukmaciej@gmail.com",
     packages=find_packages(),
     install_requires=get_requirements(),
     # entry_points={
