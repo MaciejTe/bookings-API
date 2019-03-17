@@ -59,6 +59,7 @@ put_schema = {
 
 @ns.route("")
 class ResourcesEndpoint(Resource):
+    """ Resources endpoint. """
     def get(self):
         """ Get all resources.
 
@@ -74,8 +75,10 @@ class ResourcesEndpoint(Resource):
                 )
             resource_id = request.args.get("id")
             title = request.args.get("title")
-
-            if resource_id is not None:
+            if resource_id and title is not None:
+                resources_obj_list = Resources.query.filter_by(
+                    id=resource_id, title=title).all()
+            elif resource_id is not None:
                 resources_obj_list = Resources.query.filter_by(id=resource_id).all()
             elif title is not None:
                 resources_obj_list = Resources.query.filter_by(title=title).all()
@@ -126,12 +129,12 @@ class ResourcesEndpoint(Resource):
         Returns:
             response (flask.Response): Flask response object
         """
-        request_data = request.get_json()
         try:
+            request_data = request.get_json()
             db_data = Resources.query.filter_by(id=request_data.get("id")).first()
             if db_data is None:
                 return error_response(
-                    f"Resource with given ID: {resource_id} was not found",
+                    f"Resource with given ID: {request_data['id']} was not found",
                     msg="Resource not found",
                     err_code=404,
                 )
@@ -141,6 +144,12 @@ class ResourcesEndpoint(Resource):
                 "success": True,
                 "message": f"Resource with ID {db_data.id} updated",
             }
+        except (KeyError, AttributeError):
+            return error_response(
+                "ID is the only supported filter at this moment",
+                msg="Unsupported filter",
+                err_code=403
+            )
         except Exception as err:
             return error_response(err.__repr__())
 

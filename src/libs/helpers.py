@@ -32,6 +32,6 @@ def error_response(err, msg="Internal server error", err_code=500):
     Returns:
         response (flask.Response): Flask response object
     """
-    response = jsonify(dict(success=False, message=msg, errors=err.__repr__()))
+    response = jsonify(dict(success=False, message=msg, errors=err))
     response.status_code = err_code
     return response
