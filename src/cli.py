@@ -2,6 +2,7 @@
 This file contains additional commands added to flask CLI.
 """
 import os
+from subprocess import run
 
 from src.database import db
 
@@ -32,3 +33,15 @@ def register_cli_commands(app):
         db.init_app(app)
         db.drop_all()
         app.logger.info("Database dropped")
+
+    @app.cli.command("test")
+    def test_command():
+        """Launch application tests. """
+        cmd = 'python -m pytest -s -v -rs tests/'
+        run(cmd, shell=True, check=True)
+
+    @app.cli.command("coverage")
+    def coverage_command():
+        """Launch code coverage check. """
+        cmd = 'pytest --cov=/booking_api/src tests/'
+        run(cmd, shell=True, check=True)
