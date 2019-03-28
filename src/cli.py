@@ -37,11 +37,11 @@ def register_cli_commands(app):
     @app.cli.command("test")
     def test_command():
         """Launch application tests. """
-        cmd = 'python -m pytest -s -v -rs tests/'
+        cmd = "python -m pytest -s -v -rs tests/"
         run(cmd, shell=True, check=True)
 
     @app.cli.command("coverage")
     def coverage_command():
         """Launch code coverage check. """
-        cmd = 'pytest --cov=/booking_api/src tests/'
+        cmd = "pytest --cov=/booking_api/src tests/"
         run(cmd, shell=True, check=True)

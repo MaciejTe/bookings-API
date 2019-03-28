@@ -23,7 +23,20 @@
 #######################################
 -->
 
-00.00.03 (16/03/2019)
+00.03.00 (28/03/2019)
+---------------------
+Implemented CRUD operations for /users endpoint
+   - added tests for /users enpoint
+   - added new CLI command for code coverage test: flask coverage 
+   - pytest-coverage plugin added to requirements.txt
+    
+    
+00.02.00 (19/03/2019)
+---------------------
+Implemented CRUD operations for /resources endpoint
+   - added test for resource enpoint
+
+00.01.00 (16/03/2019)
 ---------------------
 Implemented CRUD operations for /resources endpoint
    - used jsonschema to validate JSONs 

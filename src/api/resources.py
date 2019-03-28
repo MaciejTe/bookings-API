@@ -60,6 +60,7 @@ put_schema = {
 @ns.route("")
 class ResourcesEndpoint(Resource):
     """ Resources endpoint. """
+
     def get(self):
         """ Get all resources.
 
@@ -77,7 +78,8 @@ class ResourcesEndpoint(Resource):
             title = request.args.get("title")
             if resource_id and title is not None:
                 resources_obj_list = Resources.query.filter_by(
-                    id=resource_id, title=title).all()
+                    id=resource_id, title=title
+                ).all()
             elif resource_id is not None:
                 resources_obj_list = Resources.query.filter_by(id=resource_id).all()
             elif title is not None:
@@ -148,7 +150,7 @@ class ResourcesEndpoint(Resource):
             return error_response(
                 "ID is the only supported filter at this moment",
                 msg="Unsupported filter",
-                err_code=403
+                err_code=403,
             )
         except Exception as err:
             return error_response(err.__repr__())

@@ -6,6 +6,7 @@ import logging
 from flask import Flask, Blueprint
 from src.api.resources import ns as resources_namespace
 from src.api.bookings import ns as bookings_namespace
+from src.api.users import ns as users_namespace
 from config import Config
 from src.logger import handler
 from src.api import api
@@ -25,6 +26,7 @@ def initialize_app(flask_app):
     api.init_app(blueprint)
     # api.add_namespace(resources_namespace)
     # api.add_namespace(bookings_namespace)
+    # api.add_namespace(users_namespace)
     flask_app.register_blueprint(blueprint)
     register_cli_commands(flask_app)
     db.init_app(flask_app)

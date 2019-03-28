@@ -11,7 +11,7 @@ def validate_schema(schema):
             errors = [error.message for error in validator.iter_errors(input)]
             if errors:
                 response = jsonify(
-                    dict(success=False, message="invalid input", errors=errors)
+                    dict(success=False, message="Invalid input", errors=errors)
                 )
                 response.status_code = 406
                 return response
