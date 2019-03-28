@@ -1,0 +1,16 @@
+language: python
+python:
+- "3.6"
+
+before_install:
+  - pip install --upgrade pip
+  - python setup.py install
+
+script:
+   - python -m pytest -s -v -rs tests/
+   - coverage run -m pytest
+   - coverage report
+
+after_success:
+  - pip install coveralls
+  - coveralls

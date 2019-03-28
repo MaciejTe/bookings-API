@@ -1,0 +1,23 @@
+############################################################################
+## Configuration file for Coverage module - running application unit tests
+##
+## Coverage usage:
+##      - coverage run -m pytest (run all tests)
+##      - coverage run -m pytest tests.test_module.TestClass.test_case
+##          (run one test case)
+##      - coverage report (show test report, after tests run)
+##      - coverage html (generate html report, after tests run)
+##
+############################################################################
+
+[report]
+exclude_lines =
+    if __name__ == .__main__.:
+
+[run]
+omit =
+    *__init__.py
+source = src/
+
+[paths]
+source = tests/
