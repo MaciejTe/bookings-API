@@ -5,6 +5,6 @@ Bookings REST API
 </p>
 
 
-Simple REST API for booking purposes.
+REST API for booking purposes.
 
 [Changelog](CHANGELOG.md)
