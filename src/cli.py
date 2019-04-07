@@ -43,5 +43,5 @@ def register_cli_commands(app):
     @app.cli.command("coverage")
     def coverage_command():
         """Launch code coverage check. """
-        cmd = "pytest --cov=/booking_api/src tests/"
+        cmd = "coverage run -m pytest; coverage report"
         run(cmd, shell=True, check=True)
