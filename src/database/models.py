@@ -45,4 +45,4 @@ class Users(db.Model):
     phonenumber = db.Column(db.String)
 
     def __repr__(self):
-        return "<User: {}>".format(self.title)
+        return "<User: {}>".format(self.name)
