@@ -3,12 +3,21 @@ from jsonschema import Draft4Validator
 
 
 def validate_schema(schema):
+    """ Validate JSON schema decorator, applicable on all REST API methods.
+
+    Args:
+        schema (dict): expected JSON schema
+
+    Returns:
+        wrapper: JSON validator
+    """
     validator = Draft4Validator(schema)
 
     def wrapper(fn):
-        def wrapped(*args, **kwargs):
-            input = request.get_json(force=True)
-            errors = [error.message for error in validator.iter_errors(input)]
+        def validate_json(*args, **kwargs):
+            """ Validate given JSON schema from HTTP request. """
+            request_data = request.get_json(force=True)
+            errors = [error.message for error in validator.iter_errors(request_data)]
             if errors:
                 response = jsonify(
                     dict(success=False, message="Invalid input", errors=errors)
@@ -18,7 +27,7 @@ def validate_schema(schema):
             else:
                 return fn(*args, **kwargs)
 
-        return wrapped
+        return validate_json
 
     return wrapper
 

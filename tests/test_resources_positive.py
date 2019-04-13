@@ -35,6 +35,14 @@ class TestResourcesPositive:
                 "id": 1,
                 "title": "Sample Resource",
                 "updated_at": "2018-10-11 10:10:15",
+                "intervals": "15",
+                "opening_hours_mon": "08:00-12:00-12:30-16:00",
+                "opening_hours_tue": "08:00-12:00-12:30-16:00",
+                "opening_hours_wed": "08:00-12:00-12:30-16:00",
+                "opening_hours_thu": "08:00-12:00-12:30-16:00",
+                "opening_hours_fri": "08:00-12:00-12:30-16:00",
+                "opening_hours_sat": "",
+                "opening_hours_sun": "",
             },
             {
                 "active": False,
@@ -42,13 +50,29 @@ class TestResourcesPositive:
                 "id": 2,
                 "title": "Johnny Bravo",
                 "updated_at": "2018-11-10 06:06:06",
+                "intervals": "30",
+                "opening_hours_mon": "08:00-12:00",
+                "opening_hours_tue": "08:00-12:00",
+                "opening_hours_wed": "08:00-12:00",
+                "opening_hours_thu": "08:00-12:00",
+                "opening_hours_fri": "08:00-12:00",
+                "opening_hours_sat": "08:00-12:00",
+                "opening_hours_sun": "",
             },
             {
-                "active": False,
+                "active": True,
                 "created_at": "2017-01-03 07:07:07",
                 "id": 3,
                 "title": "Adam Malysz",
                 "updated_at": "2017-02-02 11:12:13",
+                "intervals": "60",
+                "opening_hours_mon": "",
+                "opening_hours_tue": "",
+                "opening_hours_wed": "",
+                "opening_hours_thu": "",
+                "opening_hours_fri": "",
+                "opening_hours_sat": "08:00-16:00",
+                "opening_hours_sun": "08:00-16:00",
             },
         ]
         assert response.json == exp_json
@@ -63,6 +87,14 @@ class TestResourcesPositive:
                 "id": 1,
                 "title": "Sample Resource",
                 "updated_at": "2018-10-11 10:10:15",
+                "intervals": "15",
+                "opening_hours_mon": "08:00-12:00-12:30-16:00",
+                "opening_hours_tue": "08:00-12:00-12:30-16:00",
+                "opening_hours_wed": "08:00-12:00-12:30-16:00",
+                "opening_hours_thu": "08:00-12:00-12:30-16:00",
+                "opening_hours_fri": "08:00-12:00-12:30-16:00",
+                "opening_hours_sat": "",
+                "opening_hours_sun": "",
             }
         ]
         assert response.status_code == 200
@@ -78,6 +110,14 @@ class TestResourcesPositive:
                 "id": 1,
                 "title": "Sample Resource",
                 "updated_at": "2018-10-11 10:10:15",
+                "intervals": "15",
+                "opening_hours_mon": "08:00-12:00-12:30-16:00",
+                "opening_hours_tue": "08:00-12:00-12:30-16:00",
+                "opening_hours_wed": "08:00-12:00-12:30-16:00",
+                "opening_hours_thu": "08:00-12:00-12:30-16:00",
+                "opening_hours_fri": "08:00-12:00-12:30-16:00",
+                "opening_hours_sat": "",
+                "opening_hours_sun": "",
             }
         ]
         assert response.status_code == 200
@@ -86,12 +126,20 @@ class TestResourcesPositive:
     def test_add_resource(self, client):
         """ Add resource to database. """
         post_response = client.post(
-            "/resources", json=dict(title="Test Resource", active=True)
+            "/resources",
+            json=dict(
+                title="Test Resource",
+                active=True,
+                intervals="30",
+                opening_hours_mon="8:30-12:00",
+            ),
         )
         assert post_response.status_code == 200
         assert post_response.json["success"] is True
         get_response = client.get("/resources?title=Test Resource")
         assert get_response.json[0]["title"] == "Test Resource"
+        assert get_response.json[0]["intervals"] == "30"
+        assert get_response.json[0]["opening_hours_mon"] == "8:30-12:00"
         assert get_response.json[0]["id"] == 4
 
     def test_update_resource(self, client):
