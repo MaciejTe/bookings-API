@@ -47,7 +47,7 @@ class TestUsersNegative:
         assert response.json["errors"] == "JSON body is not accepted in this endpoint"
         assert response.json["success"] is False
 
-    def test_get_resource_with_improper_filter(self, client):
+    def test_get_user_with_improper_filter(self, client):
         """ Use improper filter in GET /users. """
         response = client.get("/users?asd=123s")
         exp_json = [

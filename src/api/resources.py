@@ -94,6 +94,14 @@ class ResourcesEndpoint(Resource):
                     "created_at": str(res.created_at),
                     "updated_at": str(res.updated_at),
                     "active": res.active,
+                    "intervals": res.intervals,
+                    "opening_hours_mon": res.opening_hours_mon,
+                    "opening_hours_tue": res.opening_hours_tue,
+                    "opening_hours_wed": res.opening_hours_wed,
+                    "opening_hours_thu": res.opening_hours_thu,
+                    "opening_hours_fri": res.opening_hours_fri,
+                    "opening_hours_sat": res.opening_hours_sat,
+                    "opening_hours_sun": res.opening_hours_sun,
                 }
                 resources_list.append(res_dict)
             return jsonify(resources_list)
@@ -114,6 +122,14 @@ class ResourcesEndpoint(Resource):
                 created_at=datetime.now(),
                 updated_at=datetime.now(),
                 active=request_data.get("active"),
+                intervals=request_data.get("intervals"),
+                opening_hours_mon=request_data.get("opening_hours_mon"),
+                opening_hours_tue=request_data.get("opening_hours_tue"),
+                opening_hours_wed=request_data.get("opening_hours_wed"),
+                opening_hours_thu=request_data.get("opening_hours_thu"),
+                opening_hours_fri=request_data.get("opening_hours_fri"),
+                opening_hours_sat=request_data.get("opening_hours_sat"),
+                opening_hours_sun=request_data.get("opening_hours_sun"),
             )
             db.session.add(db_data)
             db.session.commit()
