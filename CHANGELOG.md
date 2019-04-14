@@ -23,6 +23,12 @@
 #######################################
 -->
 
+00.04.00 (14/04/2019)
+---------------------
+Implemented CRUD operations for /bookings endpoint
+   - added tests for /bookings enpoint
+   - upgraded Jinja2 to version 2.10.1 
+
 00.03.00 (28/03/2019)
 ---------------------
 Implemented CRUD operations for /users endpoint
