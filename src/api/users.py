@@ -174,18 +174,23 @@ class UsersEndpoint(Resource):
                     msg="User not found",
                     err_code=404,
                 )
-            if request_data.get("name"):
-                db_data.name = request_data.get("name")
-            elif request_data.get("email"):
-                db_data.email = request_data.get("email")
-            elif request_data.get("phonenumber"):
-                db_data.phonenumber = request_data.get("phonenumber")
-            else:
+            possible_request_params = [
+                request_data.get("name"),
+                request_data.get("email"),
+                request_data.get("phonenumber"),
+            ]
+            if not any(possible_request_params):
                 return error_response(
                     f"'name', 'email' or 'phonenumber' JSON arguments should be provided",
                     msg="Invalid input",
                     err_code=406,
                 )
+            if request_data.get("name"):
+                db_data.name = request_data.get("name")
+            if request_data.get("email"):
+                db_data.email = request_data.get("email")
+            if request_data.get("phonenumber"):
+                db_data.phonenumber = request_data.get("phonenumber")
             db.session.commit()
             return {"success": True, "message": f"User with ID {db_data.id} updated"}
         except (KeyError, AttributeError):
@@ -212,7 +217,7 @@ class UsersEndpoint(Resource):
                 msg="Invalid input",
                 err_code=406,
             )
-        if request.args.get("id") is not None:
+        if request.args.get("id"):
             user_id = request.args.get("id")
         else:
             return error_response(
