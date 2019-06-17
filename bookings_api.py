@@ -25,13 +25,17 @@ def initialize_app(flask_app):
     blueprint = Blueprint("swagger_ui", __name__, url_prefix="")
 
     api.init_app(blueprint)
-    # api.add_namespace(resources_namespace)
-    # api.add_namespace(bookings_namespace)
-    # api.add_namespace(users_namespace)
+    api.add_namespace(resources_namespace)
+    api.add_namespace(bookings_namespace)
+    api.add_namespace(users_namespace)
+    api.add_namespace(slots_namespace)
     flask_app.register_blueprint(blueprint)
     register_cli_commands(flask_app)
     db.init_app(flask_app)
 
 
 initialize_app(app)
-# app.run()
+
+
+if __name__ == "__main__":
+    app.run(ssl_context="adhoc")

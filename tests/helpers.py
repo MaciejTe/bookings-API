@@ -60,9 +60,7 @@ def insert_test_data_into_db_table(table_obj):
                 param_dict["notes"] = row[4]
             elif table_obj.__tablename__ == "slots":
                 param_dict["id"] = row[0]
-                param_dict["timestamp"] = datetime.strptime(
-                    row[1], "%Y-%m-%d %H:%M:%S"
-                )
+                param_dict["timestamp"] = datetime.strptime(row[1], "%Y-%m-%d %H:%M:%S")
                 param_dict["timestamp_end"] = datetime.strptime(
                     row[2], "%Y-%m-%d %H:%M:%S"
                 )
