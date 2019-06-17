@@ -29,7 +29,7 @@ class Slots(db.Model):
     timestamp_end = db.Column(db.DateTime, nullable=False)
     formatted_timestamp = db.Column(db.String, nullable=False)
     formatted_timestamp_end = db.Column(db.String, nullable=False)
-    free = db.Column(db.Boolean, nullable=False)
+    free = db.Column(db.Integer, nullable=False)
     available_resources = db.Column(db.String, nullable=False)
     maximum_capacity = db.Column(db.Integer, nullable=False)
 

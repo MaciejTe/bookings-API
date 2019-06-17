@@ -13,3 +13,7 @@ ENV FLASK_APP bookings_api.py
 RUN pip install --upgrade pip
 
 RUN python setup.py install
+
+RUN touch /var/log/cron.log
+RUN apt update; apt install -y cron
+RUN service cron start

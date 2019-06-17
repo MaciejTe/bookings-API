@@ -7,6 +7,7 @@ from flask import Flask, Blueprint
 from src.api.resources import ns as resources_namespace
 from src.api.bookings import ns as bookings_namespace
 from src.api.users import ns as users_namespace
+from src.api.slots import ns as slots_namespace
 from config import Config
 from src.logger import handler
 from src.api import api

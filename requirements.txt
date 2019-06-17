@@ -5,6 +5,7 @@ black==19.3b0
 certifi==2018.10.15
 Click==7.0
 coverage==5.0a4
+DateTimeRange==0.6.1
 Flask==1.0.2
 flask-restplus==0.12.1
 Flask-SQLAlchemy==2.3.2
@@ -18,9 +19,12 @@ more-itertools==5.0.0
 pluggy==0.8.1
 py==1.7.0
 pytest==4.1.1
+python-crontab==2.3.6
 pytest-cov==2.6.1
-pytz==2018.7
+pytz==2018.9
+setuptools==38.3.0
 six==1.11.0
 SQLAlchemy==1.2.13
 urllib3==1.24.1
+virtualenv==16.6.0
 Werkzeug==0.14.1
