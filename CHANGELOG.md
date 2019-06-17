@@ -22,6 +22,13 @@
 ##
 #######################################
 -->
+00.05.10 (17/06/2019)
+---------------------
+Implemented simple version of SSL
+   - certificates are generated on the fly (ad-hoc option)
+   - black used to reformat project
+   - pyOpenSSL added to requirements file
+   
 00.05.00 (17/06/2019)
 ---------------------
 Implemented /slots endpoint

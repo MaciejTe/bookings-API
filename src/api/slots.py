@@ -36,20 +36,25 @@ class SlotsEndpoint(Resource):
                 slots_obj_list = Slots.query.filter_by(
                     timestamp=from_date,
                     timestamp_end=to_date,
-                    available_resources=resources).all()
+                    available_resources=resources,
+                ).all()
             elif from_date and to_date is not None:
                 slots_obj_list = Slots.query.filter(
-                    and_(
-                        func.date(Slots.timestamp) >= from_date),
-                        func.date(Slots.timestamp) <= to_date).all()
+                    and_(func.date(Slots.timestamp) >= from_date),
+                    func.date(Slots.timestamp) <= to_date,
+                ).all()
             elif from_date is not None:
                 slots_obj_list = Slots.query.filter(
-                    func.date(Slots.timestamp) == from_date).all()
+                    func.date(Slots.timestamp) == from_date
+                ).all()
             elif to_date is not None:
                 slots_obj_list = Slots.query.filter(
-                    func.date(Slots.timestamp_end) == to_date).all()
+                    func.date(Slots.timestamp_end) == to_date
+                ).all()
             elif resources is not None:
-                slots_obj_list = Slots.query.filter(Slots.available_resources.in_(resources)).all()
+                slots_obj_list = Slots.query.filter(
+                    Slots.available_resources.in_(resources)
+                ).all()
             else:
                 slots_obj_list = Slots.query.all()
 
@@ -63,7 +68,7 @@ class SlotsEndpoint(Resource):
                     "formatted_timestamp_end": str(slot.formatted_timestamp_end),
                     "free": slot.free,
                     "available_resources": slot.available_resources,
-                    "maximum_capacity": slot.maximum_capacity
+                    "maximum_capacity": slot.maximum_capacity,
                 }
                 slots_list.append(slot_dict)
             return jsonify(slots_list)

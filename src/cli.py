@@ -45,3 +45,11 @@ def register_cli_commands(app):
         """Launch code coverage check. """
         cmd = "coverage run -m pytest; coverage report"
         run(cmd, shell=True, check=True)
+
+    @app.cli.command("runssl")
+    def run_ssl_command():
+        """ Launch development server with simple SSL (certificate
+            generated on the fly).
+        """
+        cmd = "flask run --cert=adhoc"
+        run(cmd, shell=True, check=True)
