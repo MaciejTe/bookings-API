@@ -22,7 +22,13 @@
 ##
 #######################################
 -->
-
+00.05.00 (17/06/2019)
+---------------------
+Implemented /slots endpoint
+   - added /slots endpoint
+   - added cron job which generates slots every day
+   - added tests for /slots enpoint
+   
 00.04.00 (14/04/2019)
 ---------------------
 Implemented CRUD operations for /bookings endpoint

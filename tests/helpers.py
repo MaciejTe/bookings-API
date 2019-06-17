@@ -17,6 +17,7 @@ def insert_test_data_into_db_table(table_obj):
         "resources": "tests/data/resources_data.csv",
         "users": "tests/data/users_data.csv",
         "bookings": "tests/data/bookings_data.csv",
+        "slots": "tests/data/slots_data.csv",
     }
     with open(csv_paths[table_obj.__tablename__]) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=",")
@@ -57,6 +58,19 @@ def insert_test_data_into_db_table(table_obj):
                 )
                 param_dict["booked_to"] = datetime.strptime(row[3], "%Y-%m-%d %H:%M:%S")
                 param_dict["notes"] = row[4]
+            elif table_obj.__tablename__ == "slots":
+                param_dict["id"] = row[0]
+                param_dict["timestamp"] = datetime.strptime(
+                    row[1], "%Y-%m-%d %H:%M:%S"
+                )
+                param_dict["timestamp_end"] = datetime.strptime(
+                    row[2], "%Y-%m-%d %H:%M:%S"
+                )
+                param_dict["formatted_timestamp"] = row[3]
+                param_dict["formatted_timestamp_end"] = row[4]
+                param_dict["free"] = row[5]
+                param_dict["available_resources"] = row[6]
+                param_dict["maximum_capacity"] = row[7]
             db_data = table_obj(**param_dict)
             db.session.add(db_data)
             db.session.commit()
