@@ -17,7 +17,7 @@ jsonschema==2.6.0
 MarkupSafe==1.0
 more-itertools==5.0.0
 pluggy==0.8.1
-py==1.7.0
+py==1.10.0
 pyOpenSSL==19.0.0
 pytest==4.1.1
 python-crontab==2.3.6
