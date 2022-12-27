@@ -23,7 +23,7 @@ pytest==4.1.1
 python-crontab==2.3.6
 pytest-cov==2.6.1
 pytz==2018.9
-setuptools==38.3.0
+setuptools==65.5.1
 six==1.11.0
 SQLAlchemy==1.2.13
 urllib3==1.24.1
