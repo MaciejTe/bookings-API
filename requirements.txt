@@ -6,7 +6,7 @@ certifi==2018.10.15
 Click==7.0
 coverage==5.0a4
 DateTimeRange==0.6.1
-Flask==1.0.2
+Flask==2.2.5
 flask-restplus==0.12.1
 Flask-SQLAlchemy==2.3.2
 Flask-Testing==0.7.1
