@@ -2,7 +2,7 @@ aniso8601==4.0.1
 atomicwrites==1.2.1
 attrs==18.2.0
 black==19.3b0
-certifi==2018.10.15
+certifi==2023.7.22
 Click==7.0
 coverage==5.0a4
 DateTimeRange==0.6.1
