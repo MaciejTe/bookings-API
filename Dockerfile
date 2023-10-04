@@ -2,7 +2,7 @@
 ## Development purposes Dockerfile
 ###################################################
 
-FROM python:3.6.3
+FROM python:3.11.5
 
 COPY . /bookings_api
 WORKDIR /bookings_api
